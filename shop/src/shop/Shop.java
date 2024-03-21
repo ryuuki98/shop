@@ -16,14 +16,46 @@ import java.util.Scanner;
  */
 
 public class Shop {
+		
+	//Admin Submenu
+	private final int ENROLL_ITEM = 1;
+	private final int DELETE_ITEM = 2;
+	private final int UPDATE_ITEM = 3;
+	private final int PRINT_SALE_STATE = 4;
+	
+	//User Submenu
+	private final int JOIN = 1;
+	private final int  DELETE_USER = 2;
+	private final int  LOG_IN = 3;
+	private final int LOG_OUT = 4;
+	private final int  MYPAGE = 5;
+	
+	//menu
 	private final int USER = 1;
 	private final int ADMIN = 2;
+	private final int END_SYSTEM = 0;
+	
+	private int log;
+	private boolean isRun;
+	
+	private UserManager userManager;
+	private ItemManager itemManager;
+	private FileManager fileManager;
+
 	private String shopName;
 	public Shop(String shopName) {
 		this.shopName = shopName;
+		
+		userManager = new UserManager();
+		itemManager = new ItemManager();
+		fileManager = new FileManager();
+		
+		isRun = true;
+		log = -1;
 	}
+	
 	public void run() {
-		while (true) {
+		while (isRun) {
 			printMenu();
 			int select = inputNumber("menu");
 			runMenu(select);
@@ -38,13 +70,35 @@ public class Shop {
 			printAdminMenu();
 			int option = inputNumber("menu");
 			runAdminMenu(option);
+		}else if (select == END_SYSTEM) {
+			isRun = false;
 		}
 	}
 	private void runAdminMenu(int option) {
-		// TODO Auto-generated method stub
-		
+		if (option == ENROLL_ITEM) {
+			itemManager.enrollItem();
+		}else if (option == DELETE_ITEM) {
+			itemManager.deleteItem();
+		}else if (option == UPDATE_ITEM) {
+			itemManager.updateItem();
+		}else if (option == PRINT_SALE_STATE) {
+			itemManager.printSaleSate();
+		}
 	}
 	private void runUserMenu(int option) {
+		if (option == JOIN) {
+			userManager.join();
+		}else if (option == DELETE_USER) {
+			userManager.deleteUser();
+		}else if (option == LOG_IN) {
+			userManager.login();
+		}else if (option == LOG_OUT) {
+			userManager.logout();
+		}else if (option == MYPAGE) {
+			printMyPageMenu();
+		}
+	}
+	private void printMyPageMenu() {
 		// TODO Auto-generated method stub
 		
 	}
@@ -76,6 +130,7 @@ public class Shop {
 		System.out.println("=======" + shopName + "=======");
 		System.out.println("1.유저");
 		System.out.println("2.관리자");
+		System.out.println("0.시스템 종료");
 	}
 
 }
