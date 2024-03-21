@@ -43,6 +43,10 @@ public class Shop {
 	private FileManager fileManager;
 
 	private String shopName;
+	
+	public void setLog(int log) {
+		this.log = log;
+	}
 	public Shop(String shopName) {
 		this.shopName = shopName;
 		
@@ -55,10 +59,12 @@ public class Shop {
 	}
 	
 	public void run() {
+		// load
 		while (isRun) {
 			printMenu();
 			int select = inputNumber("menu");
 			runMenu(select);
+			// save
 		}
 	}
 	private void runMenu(int select) {
