@@ -16,6 +16,8 @@ import java.util.Scanner;
  */
 
 public class Shop {
+	private final int USER = 1;
+	private final int ADMIN = 2;
 	private String shopName;
 	public Shop(String shopName) {
 		this.shopName = shopName;
@@ -24,7 +26,40 @@ public class Shop {
 		while (true) {
 			printMenu();
 			int select = inputNumber("menu");
+			runMenu(select);
 		}
+	}
+	private void runMenu(int select) {
+		if (select == USER) {
+			printUserMenu();
+			int option = inputNumber("menu");
+			runUserMenu(option);
+		}else if (select == ADMIN) {
+			printAdminMenu();
+			int option = inputNumber("menu");
+			runAdminMenu(option);
+		}
+	}
+	private void runAdminMenu(int option) {
+		// TODO Auto-generated method stub
+		
+	}
+	private void runUserMenu(int option) {
+		// TODO Auto-generated method stub
+		
+	}
+	private void printAdminMenu() {
+		System.out.println("1.아이템 등록");
+		System.out.println("2.아이템 삭제");
+		System.out.println("3.아이템 수정");
+		System.out.println("4.총 매출 조회");
+	}
+	private void printUserMenu() {
+		System.out.println("1.회원가입");
+		System.out.println("2.회원탈퇴");
+		System.out.println("3.로그인");
+		System.out.println("4.로그아웃");
+		System.out.println("5.마이페이지");
 	}
 	private int inputNumber(String message) {
 		int number = -1;
