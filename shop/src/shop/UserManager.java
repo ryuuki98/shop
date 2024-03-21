@@ -1,7 +1,14 @@
 package shop;
 
-public class UserManager {
+import java.util.ArrayList;
 
+public class UserManager {
+	private ArrayList<User> userList;
+	public UserManager() {
+		userList = new ArrayList<User>();
+	}
+	
+	
 	public void join() {
 	}
 

@@ -1,6 +1,12 @@
 package shop;
 
+import java.util.ArrayList;
+
 public class ItemManager {
+	private ArrayList<Item> itemlist;
+	public ItemManager() {
+		itemlist = new ArrayList<Item>();
+	}
 
 	public void enrollItem() {
 		// TODO Auto-generated method stub
