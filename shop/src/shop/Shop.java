@@ -28,7 +28,8 @@ public class Shop {
 	private final int  DELETE_USER = 2;
 	private final int  LOG_IN = 3;
 	private final int LOG_OUT = 4;
-	private final int  MYPAGE = 5;
+	private final int SHOPPING = 5;
+	private final int  MYPAGE = 6;
 	
 	//menu
 	private final int USER = 1;
@@ -103,11 +104,16 @@ public class Shop {
 			userManager.logout();
 		}else if (option == MYPAGE) {
 			printMyPageMenu();
+		}else if (option == SHOPPING) {
+			shopping();
 		}
 	}
+	private void shopping() {
+		System.out.println("shopping 입니다.");
+	}
+
 	private void printMyPageMenu() {
-		// TODO Auto-generated method stub
-		
+		System.out.println("mypage입니다.");
 	}
 	private void printAdminMenu() {
 		System.out.println("1.아이템 등록");
@@ -120,7 +126,8 @@ public class Shop {
 		System.out.println("2.회원탈퇴");
 		System.out.println("3.로그인");
 		System.out.println("4.로그아웃");
-		System.out.println("5.마이페이지");
+		System.out.println("5.쇼핑");
+		System.out.println("6.마이페이지");
 	}
 	private int inputNumber(String message) {
 		int number = -1;

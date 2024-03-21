@@ -105,8 +105,8 @@ public class UserManager {
 
 
 	public void logout() {
-		// TODO Auto-generated method stub
-		
+		Shop.setLog(-1);
+		System.out.println("로그아웃이 완료 되었습니다.");
 	}
 
 
