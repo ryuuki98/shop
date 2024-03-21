@@ -43,14 +43,66 @@ public class UserManager {
 
 
 	public void deleteUser() {
-		// TODO Auto-generated method stub
+		User user = searchUser();
+		if (user == null) {
+			System.out.println("아이디가 존재하지 않습니다.");
+			return;
+		}
+
+		String password = inputString("password");
+		if (isValidLogin(user,password)) {
+			userList.remove(user);
+			System.out.println(user.getName() + "님 탈퇴가 완료 되었습니다.");
+		}
+	}
+
+
+
+
+
+	private boolean isValidLogin(User user, String password) {
+		if (user.getPassword().equals(password)) {
+			return true;
+		}
+		System.out.println("비밀번호가 일치하지 않습니다.");
+		return false;
+	}
+
+
+	private User searchUser() {
+		User user = null;
+		String id = inputString("id");
+		user = findUserById(id);
 		
+		return user;
 	}
 
 	public void login() {
-		// TODO Auto-generated method stub
+		User user = searchUser();
+		if (user == null) {
+			System.out.println("해당 회원은 존재하지 않습니다.");
+			return;
+		}
 		
+		String password = inputString("password");
+		if (isValidLogin(user, password)) {
+			int log = findIndexByUser(user);
+			Shop.setLog(log);
+			System.out.println("로그인이 완료 되었습니다");
+			
+		}
 	}
+
+	private int findIndexByUser(User user) {
+		int index = -1;
+		for (int i = 0; i <userList.size(); i++) {
+			if (userList.get(i) == user) {
+				index = i;
+			}
+		}
+		return index;
+	}
+
 
 	public void logout() {
 		// TODO Auto-generated method stub
@@ -62,7 +114,6 @@ public class UserManager {
 		System.out.println("=================");
 		System.out.println("userCount : " + userList.size());
 		System.out.println("=================");
-		
 	}
 
 

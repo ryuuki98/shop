@@ -35,7 +35,7 @@ public class Shop {
 	private final int ADMIN = 2;
 	private final int END_SYSTEM = 0;
 	
-	private int log;
+	private static int log;
 	private boolean isRun;
 	
 	private UserManager userManager;
@@ -44,9 +44,10 @@ public class Shop {
 
 	private String shopName;
 	
-	public void setLog(int log) {
-		this.log = log;
+	public static void setLog(int log) {
+		Shop.log = log;
 	}
+	
 	public Shop(String shopName) {
 		this.shopName = shopName;
 		
@@ -133,6 +134,7 @@ public class Shop {
 		return number;
 	}
 	private void printMenu() {
+		System.out.println("login :" + (log == -1 ? "none" : log + ""));
 		printUserState();
 		System.out.println("=======" + shopName + "=======");
 		System.out.println("1.유저");
