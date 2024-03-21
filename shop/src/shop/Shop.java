@@ -94,20 +94,32 @@ public class Shop {
 		}
 	}
 	private void runUserMenu(int option) {
-		if (option == JOIN) {
+		if (option == JOIN && logout()) {
 			userManager.join();
-		}else if (option == DELETE_USER) {
+		}else if (option == DELETE_USER && login()) {
 			userManager.deleteUser();
-		}else if (option == LOG_IN) {
+		}else if (option == LOG_IN && logout()) {
 			userManager.login();
-		}else if (option == LOG_OUT) {
+		}else if (option == LOG_OUT && login()) {
 			userManager.logout();
-		}else if (option == MYPAGE) {
+		}else if (option == MYPAGE && login()) {
 			printMyPageMenu();
-		}else if (option == SHOPPING) {
+		}else if (option == SHOPPING && login()) {
 			shopping();
 		}
 	}
+	
+	
+	private boolean logout() {
+		return log == -1 ? true: false;
+	}
+	
+	private boolean login() {
+		return log != -1 ? true : false;
+	}
+	
+	
+
 	private void shopping() {
 		System.out.println("shopping 입니다.");
 	}
