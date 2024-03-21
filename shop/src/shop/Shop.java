@@ -133,10 +133,14 @@ public class Shop {
 		return number;
 	}
 	private void printMenu() {
+		printUserState();
 		System.out.println("=======" + shopName + "=======");
 		System.out.println("1.유저");
 		System.out.println("2.관리자");
 		System.out.println("0.시스템 종료");
+	}
+	private void printUserState() {
+		userManager.printUserState();
 	}
 
 }

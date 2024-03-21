@@ -58,5 +58,13 @@ public class UserManager {
 	}
 
 
+	public void printUserState() {
+		System.out.println("=================");
+		System.out.println("userCount : " + userList.size());
+		System.out.println("=================");
+		
+	}
+
+
 
 }
