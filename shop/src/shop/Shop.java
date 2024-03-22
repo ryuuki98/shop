@@ -18,15 +18,14 @@ import java.util.Scanner;
 
 public class Shop {
 
-	
 	private final int ADMIN_LOG = 0;
-	
-	//mypage Submenu
+
+	// mypage Submenu
 	private final int MY_BAG = 1;
 	private final int DELETE_ITEM_FROM_MY_CART = 2;
 	private final int MODIFY_EA = 3;
 	private final int PURCHASE = 4;
-	
+
 	// Admin Submenu
 	private final int ENROLL_ITEM = 1;
 	private final int DELETE_ITEM = 2;
@@ -139,54 +138,71 @@ public class Shop {
 			shopping();
 		} else if (option == MYPAGE && login()) {
 			printMyPageMenu();
-		    option = inputNumber("menu");
-		    runMyPageMenu(option);
+			option = inputNumber("menu");
+			runMyPageMenu(option);
 		}
 	}
 
 	private void runMyPageMenu(int option) {
 		if (option == MY_BAG) {
 			printMyBag();
-		}else if (option == DELETE_ITEM_FROM_MY_CART) {
+		} else if (option == DELETE_ITEM_FROM_MY_CART) {
 			deleteItemFromMyCart();
-		}else if (option == MODIFY_EA) {
+		} else if (option == MODIFY_EA) {
 			modifyEa();
-		}else if (option == PURCHASE) {
+		} else if (option == PURCHASE) {
 			purchase();
 		}
 	}
 
 	private void purchase() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	private void modifyEa() {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	private void deleteItemFromMyCart() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private void printMyBag() {
 		User user = userManager.getUserList().get(log);
 		ArrayList<Item> shoppingList = user.getCart().getShoppingList();
-		
+
 		if (shoppingList.size() == 0) {
 			System.out.println("장바구니가 비어있습니다.");
 			return;
 		}
 		
+		printMyBag();
+		int index = inputNumber("삭제하실 품목의 번호를 입력하세요");
+		if (index <0 || index>=shoppingList.size()) {
+			System.out.println("번호를 확인하세요.");
+			return;
+		}
+		shoppingList.remove(index);
+		System.out.println("삭제가 완료 되었습니다.");
+	}
+
+	private void printMyBag() {
+		User user = userManager.getUserList().get(log);
+		ArrayList<Item> shoppingList = user.getCart().getShoppingList();
+
+		if (shoppingList.size() == 0) {
+			System.out.println("장바구니가 비어있습니다.");
+			return;
+		}
+
 		System.out.println("==============================");
 		System.out.println(user.getName() + "님의 장바구니");
+		printMyBag(shoppingList);
+		System.out.println("==============================");
+	}
+
+	private void printMyBag(ArrayList<Item> shoppingList) {
 		for (int i = 0; i < shoppingList.size(); i++) {
 			Item item = shoppingList.get(i);
-			System.out.println(item + "    " + item.getEa() + "개");
+			System.out.println(i + ") " + item + "    " + item.getEa() + "개");
 		}
-		System.out.println("==============================");
 	}
 
 	private boolean logout() {
