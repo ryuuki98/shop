@@ -5,8 +5,11 @@ import java.util.Scanner;
 
 public class UserManager {
 	private ArrayList<User> userList;
+	private User Admin;
 	public UserManager() {
 		userList = new ArrayList<User>();
+		Admin = new User("admin","admin", "1111");
+		userList.add(Admin);
 	}
 	
 	
@@ -53,6 +56,7 @@ public class UserManager {
 		if (isValidLogin(user,password)) {
 			userList.remove(user);
 			System.out.println(user.getName() + "님 탈퇴가 완료 되었습니다.");
+			Shop.setLog(-1);
 		}
 	}
 

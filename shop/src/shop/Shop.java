@@ -16,7 +16,8 @@ import java.util.Scanner;
  */
 
 public class Shop {
-		
+	
+	
 	//Admin Submenu
 	private final int ENROLL_ITEM = 1;
 	private final int DELETE_ITEM = 2;
@@ -47,6 +48,7 @@ public class Shop {
 	
 	public static void setLog(int log) {
 		Shop.log = log;
+		
 	}
 	
 	public Shop(String shopName) {
