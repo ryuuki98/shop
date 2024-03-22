@@ -61,7 +61,7 @@ public class ItemManager {
 
 	private Item findItemByIndex() {
 		Item item = null;
-		int index = inputNumber("삭제하실 상품의 번호를 입력하세요.");
+		int index = inputNumber("상품의 번호를 입력하세요.");
 		if (index<0 || index>=itemlist.size()) {
 			System.out.println("번호를 확인해주세요.");
 		}else {
@@ -77,7 +77,17 @@ public class ItemManager {
 	}
 
 	public void updateItem() {
-		// TODO Auto-generated method stub
+		if (itemlist.size() == 0) {
+			System.out.println("상품이 존재하지 않습니다.");
+			return;
+		}
+		Item item = findItem();
+		if (item == null) {
+			return;
+		}
+		item.setName(inputString("new name"));
+		item.setPrice(inputNumber("new price"));
+		System.out.println("수정이 완료 되었습니다.");
 		
 	}
 

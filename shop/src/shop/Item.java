@@ -9,6 +9,25 @@ public class Item {
 		this.price = price;
 	}
 	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	public int getEa() {
+		return ea;
+	}
+	public void setEa(int ea) {
+		this.ea = ea;
+	}
+	
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub

@@ -42,7 +42,7 @@ public class Shop {
 	private boolean isRun;
 	
 	private static UserManager userManager;
-	private ItemManager itemManager;
+	private static ItemManager itemManager;
 	private FileManager fileManager;
 
 	private String shopName;
@@ -57,6 +57,10 @@ public class Shop {
 	public static UserManager getUserManager() {
 		return userManager;
 	}
+	public static ItemManager getItemManager() {
+		return itemManager;
+	}
+	
 	
 	public Shop(String shopName) {
 		this.shopName = shopName;
