@@ -10,6 +10,10 @@ public class ItemManager {
 		itemlist = new ArrayList<Item>();
 		userManager = Shop.getUserManager();
 	}
+	
+	public ArrayList<Item> getItemlist() {
+		return itemlist;
+	}
 
 	public void enrollItem() {
 		Item item = createItem();
@@ -54,7 +58,7 @@ public class ItemManager {
 		}
 	}
 
-	private Item findItem() {
+	public Item findItem() {
 		printItemList();
 		return findItemByIndex();
 	}

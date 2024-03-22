@@ -1,5 +1,6 @@
 package shop;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /*
@@ -123,10 +124,10 @@ public class Shop {
 			userManager.login();
 		}else if (option == LOG_OUT && login()) {
 			userManager.logout();
-		}else if (option == MYPAGE && login()) {
-			printMyPageMenu();
 		}else if (option == SHOPPING && login()) {
 			shopping();
+		}else if (option == MYPAGE && login()) {
+			printMyPageMenu();
 		}
 	}
 	
@@ -150,7 +151,49 @@ public class Shop {
 	
 
 	private void shopping() {
-		System.out.println("shopping 입니다.");
+		if (itemManager.getItemlist().size() == 0) {
+			System.out.println("상품이 존재하지 않습니다.");
+			return;
+		}
+		
+		User user = userManager.getUserList().get(log);
+		ArrayList<Item> shoppingList = user.getCart().getShoppingList();
+		
+		Item item = itemManager.findItem();
+		if (item == null) {
+			return;
+		}
+		
+		int ea = inputNumber("수량을 입력하세요");
+		
+		if (isFirstBuy(shoppingList,item)) {
+			item.setEa(ea);
+			shoppingList.add(item);
+			System.out.println("구매가 완료 되었습니다.");
+		}else {
+			setEaFromCart(shoppingList,item,ea);
+			System.out.println("구매가 완료 되었습니다.");
+		}
+	}
+
+	private void setEaFromCart(ArrayList<Item> shoppingList, Item item, int ea) {
+		for (int i = 0; i < shoppingList.size(); i++) {
+			if (shoppingList.get(i).equals(item)) {
+				Item target = shoppingList.get(i);
+				target.setEa(target.getEa() + ea);
+			}
+		}
+	}
+
+	
+
+	private boolean isFirstBuy(ArrayList<Item> shoppingList, Item item) {
+		for (int i = 0; i < shoppingList.size(); i++) {
+			if (shoppingList.get(i).equals(item)) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	private void printMyPageMenu() {
