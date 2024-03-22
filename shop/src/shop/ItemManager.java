@@ -64,8 +64,8 @@ public class ItemManager {
 			User user = userlist.get(i);
 			ArrayList<Item>shoppingList = user.getCart().getShoppingList();
 			for (int j = 0; j < shoppingList.size(); j++) {
-				if (shoppingList.get(j).equals(item)) {
-					shoppingList.remove(item);
+				if (shoppingList.get(j).getName().equals(item.getName())) {
+					shoppingList.remove(j);
 				}
 			}
 		}
@@ -113,8 +113,8 @@ public class ItemManager {
 			User user = userManager.getUserList().get(i);
 			ArrayList<Item> shoppingList = user.getCart().getShoppingList();
 			for (int j = 0; j < shoppingList.size(); j++) {
-				if (shoppingList.get(i).getName().equals(item)) {
-					shoppingList.get(i).setPrice(item.getPrice());
+				if (shoppingList.get(j).getName().equals(item.getName())) {
+					shoppingList.get(j).setPrice(item.getPrice());
 				}
 			}
 		}
