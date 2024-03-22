@@ -161,7 +161,24 @@ public class Shop {
 	}
 
 	private void modifyEa() {
-
+		User user = userManager.getUserList().get(log);
+		ArrayList<Item> shoppingList = user.getCart().getShoppingList();
+		
+		if (shoppingList.size() == 0) {
+			System.out.println("장바구니가 비어있습니다.");
+			return;
+		}
+		
+		printMyBag();
+		int index = inputNumber("수량을 수정하실 품목의 번호를 입력하세요");
+		if (index <0 || index>=shoppingList.size()) {
+			System.out.println("번호를 확인하세요.");
+			return;
+		}
+		int newEa = inputNumber("수량을 입력하세요");
+		shoppingList.get(index).setEa(newEa);
+		System.out.println("수정이 완료 되었습니다.");
+		
 	}
 
 	private void deleteItemFromMyCart() {
