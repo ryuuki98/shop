@@ -5,8 +5,10 @@ import java.util.Scanner;
 
 public class ItemManager {
 	private ArrayList<Item> itemlist;
+	private UserManager userManager;
 	public ItemManager() {
 		itemlist = new ArrayList<Item>();
+		userManager = Shop.getUserManager();
 	}
 
 	public void enrollItem() {
@@ -25,8 +27,53 @@ public class ItemManager {
 
 
 	public void deleteItem() {
-		// TODO Auto-generated method stub
+		if (itemlist.size() == 0) {
+			System.out.println("상품이 없습니다.");
+			return;
+		}
+		Item item = findItem();
+		if (item == null) {
+			return;
+		}
+		itemlist.remove(item);
+		deleteItemfromUserCart(item);
+		System.out.println("삭제가 완료 되었습니다.");
 		
+	}
+
+	private void deleteItemfromUserCart(Item item) {
+		ArrayList<User> userlist = userManager.getUserList();
+		for (int i = 0; i < userlist.size(); i++) {
+			User user = userlist.get(i);
+			ArrayList<Item>shoppingList = user.getCart().getShoppingList();
+			for (int j = 0; j < shoppingList.size(); j++) {
+				if (shoppingList.get(j).equals(item)) {
+					shoppingList.remove(item);
+				}
+			}
+		}
+	}
+
+	private Item findItem() {
+		printItemList();
+		return findItemByIndex();
+	}
+
+	private Item findItemByIndex() {
+		Item item = null;
+		int index = inputNumber("삭제하실 상품의 번호를 입력하세요.");
+		if (index<0 || index>=itemlist.size()) {
+			System.out.println("번호를 확인해주세요.");
+		}else {
+			item = itemlist.get(index);
+		}
+		return item;
+	}
+
+	private void printItemList() {
+		for (int i = 0; i < itemlist.size(); i++) {
+			System.out.println(i+") " + itemlist.get(i));
+		}
 	}
 
 	public void updateItem() {

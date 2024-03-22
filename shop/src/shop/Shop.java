@@ -41,7 +41,7 @@ public class Shop {
 	private static int log;
 	private boolean isRun;
 	
-	private UserManager userManager;
+	private static UserManager userManager;
 	private ItemManager itemManager;
 	private FileManager fileManager;
 
@@ -53,7 +53,9 @@ public class Shop {
 	
 	public static void setLog(int log) {
 		Shop.log = log;
-		
+	}
+	public static UserManager getUserManager() {
+		return userManager;
 	}
 	
 	public Shop(String shopName) {

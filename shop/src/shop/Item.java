@@ -9,4 +9,10 @@ public class Item {
 		this.price = price;
 	}
 	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return String.format("%s : %d원",name,price);
+	}
+	
 }
