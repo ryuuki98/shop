@@ -44,6 +44,8 @@ public class Shop {
 	private final int USER = 1;
 	private final int ADMIN = 2;
 	private final int END_SYSTEM = 0;
+	
+	private int totalPrice;
 
 	private static int log;
 	private boolean isRun;
@@ -156,8 +158,32 @@ public class Shop {
 	}
 
 	private void purchase() {
-		// TODO Auto-generated method stub
+		User user = userManager.getUserList().get(log);
+		ArrayList<Item> shoppingList = user.getCart().getShoppingList();
+		
+		if (shoppingList.size() == 0) {
+			System.out.println("장바구니가 비어있습니다.");
+			return;
+		}
+		
+		printMyBag();
+		int total = TotalPrice(shoppingList);
+		int check = inputNumber("결제하시겠습니까 ? (y:1 n:0");
+		if (check == 1) {
+			totalPrice += total;
+			user.getCart().clearAll();
+			System.out.println("결제가 완료 되었습니다.");
+		}
+	}
 
+	private int TotalPrice(ArrayList<Item> shoppingList) {
+		int total = 0;
+		for (int i = 0; i < shoppingList.size(); i++) {
+			Item item = shoppingList.get(i);
+			total += item.getPrice() * item.getEa();
+		}
+		System.out.println("총 금액 : " + total);
+		return total;
 	}
 
 	private void modifyEa() {

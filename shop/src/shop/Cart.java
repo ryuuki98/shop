@@ -11,4 +11,9 @@ public class Cart {
 	public ArrayList<Item> getShoppingList() {
 		return shoppingList;
 	}
+
+	public void clearAll() {
+		// TODO Auto-generated method stub
+		
+	}
 }
