@@ -167,8 +167,9 @@ public class Shop {
 		int ea = inputNumber("수량을 입력하세요");
 		
 		if (isFirstBuy(shoppingList,item)) {
-			item.setEa(ea);
-			shoppingList.add(item);
+			Item buy = item.clone();
+			buy.setEa(ea);
+			shoppingList.add(buy);
 			System.out.println("구매가 완료 되었습니다.");
 		}else {
 			setEaFromCart(shoppingList,item,ea);
@@ -178,7 +179,7 @@ public class Shop {
 
 	private void setEaFromCart(ArrayList<Item> shoppingList, Item item, int ea) {
 		for (int i = 0; i < shoppingList.size(); i++) {
-			if (shoppingList.get(i).equals(item)) {
+			if (shoppingList.get(i).getName().equals(item.getName())) {
 				Item target = shoppingList.get(i);
 				target.setEa(target.getEa() + ea);
 			}
@@ -189,7 +190,7 @@ public class Shop {
 
 	private boolean isFirstBuy(ArrayList<Item> shoppingList, Item item) {
 		for (int i = 0; i < shoppingList.size(); i++) {
-			if (shoppingList.get(i).equals(item)) {
+			if (shoppingList.get(i).getName().equals(item.getName())) {
 				return false;
 			}
 		}
