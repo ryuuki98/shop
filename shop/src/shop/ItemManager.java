@@ -17,8 +17,21 @@ public class ItemManager {
 
 	public void enrollItem() {
 		Item item = createItem();
+		if (isDulpicatedItem(item)) {
+			System.out.println("이미 등록된 상품입니다");
+			return;
+		}
 		itemlist.add(item);
 		System.out.println("상품 등록이 완료 되었습니다.");
+	}
+
+	private boolean isDulpicatedItem(Item item) {
+		for (int i = 0; i < itemlist.size(); i++) {
+			if (itemlist.get(i).getName().equals(item.getName())) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	private Item createItem() {
