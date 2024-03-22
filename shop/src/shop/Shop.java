@@ -18,6 +18,7 @@ import java.util.Scanner;
 public class Shop {
 	
 	
+	private final int ADMIN_LOG = 0;
 	//Admin Submenu
 	private final int ENROLL_ITEM = 1;
 	private final int DELETE_ITEM = 2;
@@ -45,6 +46,10 @@ public class Shop {
 	private FileManager fileManager;
 
 	private String shopName;
+	
+	public static int getLog() {
+		return log;
+	}
 	
 	public static void setLog(int log) {
 		Shop.log = log;
@@ -76,7 +81,7 @@ public class Shop {
 			printUserMenu();
 			int option = inputNumber("menu");
 			runUserMenu(option);
-		}else if (select == ADMIN) {
+		}else if (select == ADMIN && isAdmin()) {
 			printAdminMenu();
 			int option = inputNumber("menu");
 			runAdminMenu(option);
@@ -84,6 +89,14 @@ public class Shop {
 			isRun = false;
 		}
 	}
+	private boolean isAdmin() {
+		if (log != ADMIN_LOG) {
+			System.out.println("관리자만 이용할 수 있는 메뉴입니다.");
+			return false;
+		}
+		return true;
+	}
+
 	private void runAdminMenu(int option) {
 		if (option == ENROLL_ITEM) {
 			itemManager.enrollItem();
@@ -113,13 +126,19 @@ public class Shop {
 	
 	
 	private boolean logout() {
-		System.out.println(log == -1 ? "" : "로그아웃 후 이용하세요");
-		return log == -1 ? true: false;
+		if (log != -1) {
+			System.out.println("로그아웃 후 이용하세요");
+			return false;
+		}
+		return true;
 	}
 	
 	private boolean login() {
-		System.out.println(log != -1 ? "" : "로그인 후 이용하세요");
-		return log != -1 ? true : false;
+		if (log == -1) {
+			System.out.println("로그인 후 이용하세요");
+			return false;
+		}
+		return true;
 	}
 	
 	

@@ -47,6 +47,10 @@ public class UserManager {
 
 	public void deleteUser() {
 		User user = searchUser();
+		if (user.getName().equals("admin")) {
+			System.out.println("관리자 계정은 탈퇴하실 수 없습니다.");
+			return;
+		}
 		if (user == null) {
 			System.out.println("아이디가 존재하지 않습니다.");
 			return;
