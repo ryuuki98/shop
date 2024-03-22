@@ -45,7 +45,6 @@ public class Shop {
 	private final int ADMIN = 2;
 	private final int END_SYSTEM = 0;
 	
-	private int totalPrice;
 
 	private static int log;
 	private boolean isRun;
@@ -123,7 +122,7 @@ public class Shop {
 		} else if (option == UPDATE_ITEM) {
 			itemManager.updateItem();
 		} else if (option == PRINT_SALE_STATE) {
-			itemManager.printSaleSate();
+			itemManager.printSaleState();
 		}
 	}
 
@@ -170,7 +169,7 @@ public class Shop {
 		int total = TotalPrice(shoppingList);
 		int check = inputNumber("결제하시겠습니까 ? (y:1 n:0");
 		if (check == 1) {
-			totalPrice += total;
+			itemManager.setTotalPrice(itemManager.getTotalPrice() + total);
 			user.getCart().clearAll();
 			System.out.println("결제가 완료 되었습니다.");
 		}

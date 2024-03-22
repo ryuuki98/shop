@@ -13,7 +13,6 @@ public class Cart {
 	}
 
 	public void clearAll() {
-		// TODO Auto-generated method stub
-		
+		this.shoppingList.clear();
 	}
 }

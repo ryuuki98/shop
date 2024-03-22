@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class ItemManager {
 	private ArrayList<Item> itemlist;
 	private UserManager userManager;
+	private int totalPrice;
 	public ItemManager() {
 		itemlist = new ArrayList<Item>();
 		userManager = Shop.getUserManager();
@@ -13,6 +14,13 @@ public class ItemManager {
 	
 	public ArrayList<Item> getItemlist() {
 		return itemlist;
+	}
+	
+	public int getTotalPrice() {
+		return totalPrice;
+	}
+	public void setTotalPrice(int totalPrice) {
+		this.totalPrice = totalPrice;
 	}
 
 	public void enrollItem() {
@@ -120,9 +128,8 @@ public class ItemManager {
 		}
 	}
 
-	public void printSaleSate() {
-		// TODO Auto-generated method stub
-		
+	public void printSaleState() {
+		System.out.println("오늘의 총 매출 : " + totalPrice +"원");
 	}
 	
 
