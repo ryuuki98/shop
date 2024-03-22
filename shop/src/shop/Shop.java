@@ -83,12 +83,12 @@ public class Shop {
 	}
 
 	public void run() {
-		// load
+		fileManager.load();
 		while (isRun) {
 			printMenu();
 			int select = inputNumber("menu");
 			runMenu(select);
-			// save
+			fileManager.save();
 		}
 	}
 
