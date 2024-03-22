@@ -111,10 +111,12 @@ public class Shop {
 	
 	
 	private boolean logout() {
+		System.out.println(log == -1 ? "" : "로그아웃 후 이용하세요");
 		return log == -1 ? true: false;
 	}
 	
 	private boolean login() {
+		System.out.println(log != -1 ? "" : "로그인 후 이용하세요");
 		return log != -1 ? true : false;
 	}
 	
