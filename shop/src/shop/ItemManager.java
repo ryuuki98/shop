@@ -89,10 +89,22 @@ public class ItemManager {
 		if (item == null) {
 			return;
 		}
-		item.setName(inputString("new name"));
 		item.setPrice(inputNumber("new price"));
+		updatePriceFromUserCart(item);
 		System.out.println("수정이 완료 되었습니다.");
 		
+	}
+
+	private void updatePriceFromUserCart(Item item) {
+		for (int i = 0; i < userManager.getUserList().size(); i++) {
+			User user = userManager.getUserList().get(i);
+			ArrayList<Item> shoppingList = user.getCart().getShoppingList();
+			for (int j = 0; j < shoppingList.size(); j++) {
+				if (shoppingList.get(i).getName().equals(item)) {
+					shoppingList.get(i).setPrice(item.getPrice());
+				}
+			}
+		}
 	}
 
 	public void printSaleSate() {
