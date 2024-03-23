@@ -1,5 +1,7 @@
 package shop;
 
+import java.io.IOException;
+
 /*
  * 유저 -
  * ㄴ 회원가입/탈퇴
@@ -14,7 +16,7 @@ package shop;
  */
 
 public class Main {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		Shop shop = new Shop("Mega");
 		shop.run();
 	}

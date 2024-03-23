@@ -1,5 +1,6 @@
 package shop;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -82,7 +83,7 @@ public class Shop {
 		log = -1;
 	}
 
-	public void run() {
+	public void run() throws IOException {
 		fileManager.load();
 		while (isRun) {
 			printMenu();

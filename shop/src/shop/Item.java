@@ -9,6 +9,12 @@ public class Item {
 		this.price = price;
 	}
 	
+	public Item(String itemName, int price, int ea) {
+		this.name = itemName;
+		this.price = price;
+		this.ea = ea;
+	}
+
 	public String getName() {
 		return name;
 	}
