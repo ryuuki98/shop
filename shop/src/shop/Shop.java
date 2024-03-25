@@ -45,7 +45,6 @@ public class Shop {
 	private final int USER = 1;
 	private final int ADMIN = 2;
 	private final int END_SYSTEM = 0;
-	
 
 	private static int log;
 	private boolean isRun;
@@ -89,8 +88,8 @@ public class Shop {
 			printMenu();
 			int select = inputNumber("menu");
 			runMenu(select);
-			fileManager.save();
 		}
+		fileManager.save();
 	}
 
 	private void runMenu(int select) {
@@ -160,20 +159,35 @@ public class Shop {
 	private void purchase() {
 		User user = userManager.getUserList().get(log);
 		ArrayList<Item> shoppingList = user.getCart().getShoppingList();
-		
+
 		if (shoppingList.size() == 0) {
 			System.out.println("장바구니가 비어있습니다.");
 			return;
 		}
-		
+
 		printMyBag();
 		int total = TotalPrice(shoppingList);
 		int check = inputNumber("결제하시겠습니까 ? (y:1 n:0");
 		if (check == 1) {
 			itemManager.setTotalPrice(itemManager.getTotalPrice() + total);
+			printReciept();
 			user.getCart().clearAll();
 			System.out.println("결제가 완료 되었습니다.");
 		}
+	}
+
+	private void printReciept() {
+		User user = userManager.getUserList().get(log);
+		ArrayList<Item> shoppingList = user.getCart().getShoppingList();
+		int totalPrice = 0;
+		System.out.println("==================reciept=====================");
+		for (int i = 0; i < shoppingList.size(); i++) {
+			Item item = shoppingList.get(i);
+			System.out.println(item.getName() + "           " + item.getPrice() + "원   " + item.getEa() + "개");
+			totalPrice += item.getPrice() * item.getEa();
+		}
+		System.out.println("총 가격 : " + totalPrice + "원");
+		System.out.println("==============================================");
 	}
 
 	private int TotalPrice(ArrayList<Item> shoppingList) {
@@ -189,22 +203,22 @@ public class Shop {
 	private void modifyEa() {
 		User user = userManager.getUserList().get(log);
 		ArrayList<Item> shoppingList = user.getCart().getShoppingList();
-		
+
 		if (shoppingList.size() == 0) {
 			System.out.println("장바구니가 비어있습니다.");
 			return;
 		}
-		
+
 		printMyBag();
 		int index = inputNumber("수량을 수정하실 품목의 번호를 입력하세요");
-		if (index <0 || index>=shoppingList.size()) {
+		if (index < 0 || index >= shoppingList.size()) {
 			System.out.println("번호를 확인하세요.");
 			return;
 		}
 		int newEa = inputNumber("수량을 입력하세요");
 		shoppingList.get(index).setEa(newEa);
 		System.out.println("수정이 완료 되었습니다.");
-		
+
 	}
 
 	private void deleteItemFromMyCart() {
@@ -215,10 +229,10 @@ public class Shop {
 			System.out.println("장바구니가 비어있습니다.");
 			return;
 		}
-		
+
 		printMyBag();
 		int index = inputNumber("삭제하실 품목의 번호를 입력하세요");
-		if (index <0 || index>=shoppingList.size()) {
+		if (index < 0 || index >= shoppingList.size()) {
 			System.out.println("번호를 확인하세요.");
 			return;
 		}
